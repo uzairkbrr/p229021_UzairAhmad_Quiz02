@@ -1,0 +1,14 @@
+{
+  "name": "p229021-uzairahmad-quiz02",
+  "version": "1.0.0",
+  "description": "User Registration Form - Quiz 02",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.19.0",
+    "sql.js": "^1.10.3"
+  }
+}

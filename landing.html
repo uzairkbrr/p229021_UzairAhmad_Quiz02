@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page - Quiz 02</title>
+    <!-- CSS style landing page ko khubsurat banane ke liye -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        /* =============================================
+           NAVIGATION BAR - Upar wali patti
+           ============================================= */
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Website ka naam / logo */
+        .navbar .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* Navbar ke links */
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .navbar .nav-links span {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+        }
+
+        /* Logout button ka style */
+        .logout-btn {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        /* =============================================
+           HERO SECTION - Mukhya hissa author ki tasveer ke sath
+           ============================================= */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 40px 80px;
+        }
+
+        /* Hero ke andar ka container */
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* Author ki tasveer ka wrapper */
+        .hero-image {
+            flex-shrink: 0;
+        }
+
+        /* Author ki tasveer - gol shape mein */
+        .hero-image img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hero mein text ka hissa */
+        .hero-text {
+            color: white;
+        }
+
+        /* Khush aamdeed ka paigham */
+        .hero-text .welcome-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-text h1 {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero-text h3 {
+            font-size: 20px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0.85;
+            max-width: 500px;
+        }
+
+        /* =============================================
+           ASSIGNMENT DETAILS SECTION - Assignment ki maloomat
+           ============================================= */
+        .assignment-section {
+            padding: 80px 40px;
+            background: #f8f9fa;
+        }
+
+        /* Section ki heading */
+        .section-title {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Section ki heading ke neeche chhoti line */
+        .section-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 50px;
+        }
+
+        /* Cards ka grid layout */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Har ek detail card */
+        .detail-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Jab card par hover karein */
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Card ka icon */
+        .detail-card .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .detail-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .detail-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Card ke andar list ki styling */
+        .detail-card ul {
+            margin-top: 10px;
+            padding-left: 18px;
+        }
+
+        .detail-card ul li {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        /* =============================================
+           FOOTER - Neeche wala hissa
+           ============================================= */
+        .footer {
+            background: #2d2d2d;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 25px 40px;
+            font-size: 14px;
+        }
+
+        /* =============================================
+           RESPONSIVE DESIGN - Chhoti screen ke liye
+           ============================================= */
+        @media (max-width: 768px) {
+            /* Mobile par hero section ko column mein dikhao */
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-text p {
+                margin: 0 auto;
+            }
+
+            .hero-image img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION BAR - Sabse upar wali patti
+         ============================================= -->
+    <nav class="navbar">
+        <a href="/landing" class="logo">Quiz 02</a>
+        <div class="nav-links">
+            <!-- Logged in user ka naam yahan dikhega (JavaScript se) -->
+            <span id="welcomeUser">Khush Aamdeed!</span>
+            <!-- Logout ka button -->
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         HERO SECTION - Author ki tasveer aur taaruf
+         ============================================= -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Author ki tasveer -->
+            <div class="hero-image">
+                <img src="/uzair.png" alt="Uzair Ahmad ki tasveer">
+            </div>
+
+            <!-- Author ka taaruf -->
+            <div class="hero-text">
+                <div class="welcome-tag">p229021 - Quiz 02</div>
+                <h1>Uzair Ahmad</h1>
+                <h3>Author of this Project</h3>
+                <p>
+                    Yeh project Quiz 02 ke liye banaya gaya hai. Is mein user registration
+                    aur login ka nizam shamil hai jo Node.js, Express aur SQLite database
+                    istemal karta hai. Tamam comments Roman Urdu mein likhay gaye hain.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         ASSIGNMENT DETAILS SECTION - Assignment ki maloomat
+         ============================================= -->
+    <section class="assignment-section">
+        <h2 class="section-title">Assignment ki Tafseelat</h2>
+        <p class="section-subtitle">Quiz 02 - Web Development Assignment</p>
+
+        <div class="details-grid">
+
+            <!-- Card 1: Assignment ka maqsad -->
+            <div class="detail-card">
+                <div class="card-icon">&#127919;</div>
+                <h3>Assignment ka Maqsad</h3>
+                <p>
+                    Ek HTML form banana jo user ka naam, password aur email le kar database
+                    mein mehfooz kare. Password ki validation lazmi hai aur tamam comments
+                    Roman Urdu mein hone chahiyein.
+                </p>
+            </div>
+
+            <!-- Card 2: Password ki zarooraat -->
+            <div class="detail-card">
+                <div class="card-icon">&#128274;</div>
+                <h3>Password ki Zarooraat</h3>
+                <p>Password mein yeh sab hona lazmi hai:</p>
+                <ul>
+                    <li>Kam az kam 8 characters</li>
+                    <li>Kam az kam 1 bara harf (A-Z)</li>
+                    <li>Kam az kam 1 chhota harf (a-z)</li>
+                    <li>Kam az kam 1 number (0-9)</li>
+                    <li>Kam az kam 1 khaas nishan (!@#$%^&*)</li>
+                </ul>
+            </div>
+
+            <!-- Card 3: Istemal ki gayi technologies -->
+            <div class="detail-card">
+                <div class="card-icon">&#128187;</div>
+                <h3>Technologies</h3>
+                <p>Is project mein yeh technologies istemal hui hain:</p>
+                <ul>
+                    <li><strong>HTML5 & CSS3</strong> - Front-end design</li>
+                    <li><strong>JavaScript</strong> - Client-side validation</li>
+                    <li><strong>Node.js + Express</strong> - Server</li>
+                    <li><strong>SQLite</strong> - Database</li>
+                </ul>
+            </div>
+
+            <!-- Card 4: Hifazati khasusiyaat (Security features) -->
+            <div class="detail-card">
+                <div class="card-icon">&#128737;</div>
+                <h3>Hifazati Khasusiyaat</h3>
+                <p>Is project mein yeh hifazati iqdamaat hain:</p>
+                <ul>
+                    <li>Password PBKDF2 + SHA-512 se hash hota hai</li>
+                    <li>SQL Injection se bachao (Prepared Statements)</li>
+                    <li>Client aur Server dono par validation</li>
+                    <li>Session-based authentication</li>
+                </ul>
+            </div>
+
+            <!-- Card 5: Student ki maloomat -->
+            <div class="detail-card">
+                <div class="card-icon">&#127891;</div>
+                <h3>Student ki Maloomat</h3>
+                <p>
+                    <strong>Naam:</strong> Uzair Ahmad<br>
+                    <strong>Roll Number:</strong> p229021<br>
+                    <strong>Assignment:</strong> Quiz 02<br>
+                    <strong>Mauzu:</strong> User Registration & Login System
+                </p>
+            </div>
+
+            <!-- Card 6: Kaise chalayein -->
+            <div class="detail-card">
+                <div class="card-icon">&#9654;</div>
+                <h3>Kaise Chalayein</h3>
+                <p>Project chalane ka tareeqa:</p>
+                <ul>
+                    <li><strong>npm install</strong> - packages install karein</li>
+                    <li><strong>npm start</strong> - server shuru karein</li>
+                    <li>Browser mein <strong>localhost:3000</strong> kholein</li>
+                    <li>Register karein, phir login karein</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER - Sab se neeche wala hissa
+         ============================================= -->
+    <footer class="footer">
+        <p>Quiz 02 - Uzair Ahmad (p229021) | Node.js + Express + SQLite</p>
+    </footer>
+
+    <!-- JavaScript - user ka naam navbar mein dikhane ke liye -->
+    <script>
+        // URL se query parameter hasil karo (server se username aayega)
+        var urlParams = new URLSearchParams(window.location.search);
+        var username = urlParams.get('user');
+        if (username) {
+            document.getElementById('welcomeUser').textContent = 'Khush Aamdeed, ' + username + '!';
+        }
+    </script>
+
+</body>
+</html>

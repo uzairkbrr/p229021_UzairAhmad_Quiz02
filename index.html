@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <!-- CSS style yahan likha gaya hai form ko khubsurat banane ke liye -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Form ka mukhya container */
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        /* Form ki heading */
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+
+        /* Har input field ka group */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        /* Jab input field par focus ho */
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Submit button ki styling */
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Password ki zarooraton ki list */
+        .password-requirements {
+            font-size: 12px;
+            color: #888;
+            margin-top: 6px;
+            padding-left: 15px;
+        }
+
+        .password-requirements li {
+            margin-bottom: 3px;
+            transition: color 0.3s;
+        }
+
+        /* Jab password ki zaroorat poori ho jaye */
+        .password-requirements li.valid {
+            color: #28a745;
+        }
+
+        /* Jab password ki zaroorat poori na ho */
+        .password-requirements li.invalid {
+            color: #dc3545;
+        }
+
+        /* Ghalti ka paigham dikhane ke liye */
+        .error-message {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Kamyabi ka paigham */
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        /* Login page ka link */
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Registration Form</h2>
+
+        <!-- Kamyabi ka paigham yahan dikhaya jayega -->
+        <div class="success-message" id="successMsg">
+            Registration kamyab ho gayi!
+        </div>
+
+        <!-- Yeh form user ka naam, password aur email leta hai -->
+        <form id="registrationForm" action="/register" method="POST" onsubmit="return validateForm()">
+
+            <!-- User ka naam ka input field -->
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" id="username" name="username" placeholder="Apna naam likhein" required>
+                <div class="error-message" id="usernameError">User naam zaruri hai</div>
+            </div>
+
+            <!-- Email ka input field -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Apna email likhein" required>
+                <div class="error-message" id="emailError">Sahih email darj karein</div>
+            </div>
+
+            <!-- Password ka input field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Apna password likhein" required
+                    oninput="checkPasswordStrength()">
+                <div class="error-message" id="passwordError">Password tamam zarooraton ko poora kare</div>
+
+                <!-- Password ki zarooraton ki list -->
+                <ul class="password-requirements" id="requirements">
+                    <li id="length">Kam az kam 8 characters hon</li>
+                    <li id="uppercase">Kam az kam 1 bara harf (A-Z)</li>
+                    <li id="lowercase">Kam az kam 1 chhota harf (a-z)</li>
+                    <li id="number">Kam az kam 1 number (0-9)</li>
+                    <li id="special">Kam az kam 1 khaas nishan (!@#$%^&*)</li>
+                </ul>
+            </div>
+
+            <!-- Form submit karne ka button -->
+            <button type="submit" class="submit-btn">Register Karein</button>
+        </form>
+
+        <!-- Login page ka link - agar pehle se account hai -->
+        <div class="login-link">
+            Pehle se account hai? <a href="/login">Login Karein</a>
+        </div>
+    </div>
+
+    <!-- JavaScript yahan hai form ki tasdeeq (validation) ke liye -->
+    <script>
+        // Yeh function password ki mazbooti check karta hai jab user type kare
+        function checkPasswordStrength() {
+            var password = document.getElementById('password').value;
+
+            // Kam az kam 8 characters ki jaanch
+            var lengthReq = document.getElementById('length');
+            if (password.length >= 8) {
+                lengthReq.classList.add('valid');
+                lengthReq.classList.remove('invalid');
+            } else {
+                lengthReq.classList.add('invalid');
+                lengthReq.classList.remove('valid');
+            }
+
+            // Bara harf (uppercase) ki jaanch
+            var uppercaseReq = document.getElementById('uppercase');
+            if (/[A-Z]/.test(password)) {
+                uppercaseReq.classList.add('valid');
+                uppercaseReq.classList.remove('invalid');
+            } else {
+                uppercaseReq.classList.add('invalid');
+                uppercaseReq.classList.remove('valid');
+            }
+
+            // Chhota harf (lowercase) ki jaanch
+            var lowercaseReq = document.getElementById('lowercase');
+            if (/[a-z]/.test(password)) {
+                lowercaseReq.classList.add('valid');
+                lowercaseReq.classList.remove('invalid');
+            } else {
+                lowercaseReq.classList.add('invalid');
+                lowercaseReq.classList.remove('valid');
+            }
+
+            // Number ki jaanch
+            var numberReq = document.getElementById('number');
+            if (/[0-9]/.test(password)) {
+                numberReq.classList.add('valid');
+                numberReq.classList.remove('invalid');
+            } else {
+                numberReq.classList.add('invalid');
+                numberReq.classList.remove('valid');
+            }
+
+            // Khaas nishan (special character) ki jaanch
+            var specialReq = document.getElementById('special');
+            if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+                specialReq.classList.add('valid');
+                specialReq.classList.remove('invalid');
+            } else {
+                specialReq.classList.add('invalid');
+                specialReq.classList.remove('valid');
+            }
+        }
+
+        // Yeh function form submit hone se pehle tamam fields ki tasdeeq karta hai
+        function validateForm() {
+            var isValid = true;
+
+            // User naam ki jaanch
+            var username = document.getElementById('username').value.trim();
+            if (username === '') {
+                document.getElementById('usernameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('usernameError').style.display = 'none';
+            }
+
+            // Email ki jaanch
+            var email = document.getElementById('email').value.trim();
+            // Email ka pattern - sahih format hona chahiye
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+
+            // Password ki jaanch - tamam zarooraton ko poora karna lazmi hai
+            var password = document.getElementById('password').value;
+            var passwordValid = true;
+
+            // Password ka pattern - 8 characters, 1 bara harf, 1 chhota harf, 1 number, 1 khaas nishan
+            var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+
+            if (!passwordPattern.test(password)) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('passwordError').style.display = 'none';
+            }
+
+            // Agar sab kuch theek hai to form submit hoga
+            return isValid;
+        }
+    </script>
+
+</body>
+</html>

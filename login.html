@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- CSS style yahan likha gaya hai login form ko khubsurat banane ke liye -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Login form ka mukhya container */
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        /* Form ki heading */
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+
+        /* Har input field ka group */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        /* Jab input field par focus ho */
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Login button ki styling */
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Ghalti ka paigham dikhane ke liye */
+        .error-message {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Registration link ka style */
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .register-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Login</h2>
+
+        <!-- Yeh form user ka email aur password le kar login karta hai -->
+        <form id="loginForm" action="/login" method="POST" onsubmit="return validateLogin()">
+
+            <!-- Email ka input field -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Apna email likhein" required>
+                <div class="error-message" id="emailError">Sahih email darj karein</div>
+            </div>
+
+            <!-- Password ka input field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Apna password likhein" required>
+                <div class="error-message" id="passwordError">Password zaruri hai</div>
+            </div>
+
+            <!-- Login button -->
+            <button type="submit" class="submit-btn">Login Karein</button>
+        </form>
+
+        <!-- Registration page ka link -->
+        <div class="register-link">
+            Account nahi hai? <a href="/">Register Karein</a>
+        </div>
+    </div>
+
+    <!-- JavaScript login form ki tasdeeq ke liye -->
+    <script>
+        // Yeh function login form submit hone se pehle fields ki jaanch karta hai
+        function validateLogin() {
+            var isValid = true;
+
+            // Email ki jaanch
+            var email = document.getElementById('email').value.trim();
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+
+            // Password khaali to nahi
+            var password = document.getElementById('password').value;
+            if (password === '') {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('passwordError').style.display = 'none';
+            }
+
+            return isValid;
+        }
+    </script>
+
+</body>
+</html>
