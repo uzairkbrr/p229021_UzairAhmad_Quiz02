@@ -11,7 +11,7 @@ Yeh ek web application hai jo user ka naam, email aur password le kar SQLite dat
 
 ## DEMO:
 
-[![Project ka Demo Video](https://cdn.loom.com/sessions/thumbnails/cd2f8426a3e8494ab3fac5399db65f21-with-play.gif)](https://www.loom.com/share/cd2f8426a3e8494ab3fac5399db65f21)
+[Project ka Demo Video Dekhein (Loom Recording)](https://www.loom.com/share/cd2f8426a3e8494ab3fac5399db65f21)
 
 > Tamam screenshots dekhne ke liye [screenshots.md](screenshots.md) kholein.
 
