@@ -1,104 +1,139 @@
-# صارف رجسٹریشن فارم (User Registration Form)
+# User Registration & Login System - Quiz 02
 
-## پروجیکٹ کا تعارف
-یہ ایک ویب ایپلیکیشن ہے جو صارف کا نام، ای میل اور پاس ورڈ لے کر ڈیٹا بیس میں محفوظ کرتی ہے۔ یہ پروجیکٹ Quiz 02 کے لیے بنایا گیا ہے۔
+## Project ka Taaruf
 
-**نام:** عزیر احمد  
-**رول نمبر:** p229021
+Yeh ek web application hai jo user ka naam, email aur password le kar SQLite database mein mehfooz karti hai. Registration ke baad user login karke landing page dekh sakta hai. Yeh project Quiz 02 ke liye banaya gaya hai.
+
+**Naam:** Uzair Ahmad  
+**Roll Number:** p229021
 
 ---
 
 ## DEMO:
 
-[![پروجیکٹ کا ڈیمو ویڈیو](https://cdn.loom.com/sessions/thumbnails/cd2f8426a3e8494ab3fac5399db65f21-with-play.gif)](https://www.loom.com/share/cd2f8426a3e8494ab3fac5399db65f21)
+[![Project ka Demo Video](https://cdn.loom.com/sessions/thumbnails/cd2f8426a3e8494ab3fac5399db65f21-with-play.gif)](https://www.loom.com/share/cd2f8426a3e8494ab3fac5399db65f21)
+
+> Tamam screenshots dekhne ke liye [screenshots.md](screenshots.md) kholein.
 
 ---
 
-## فائلوں کی تفصیل
+## Files ki Tafseelat
 
-| فائل کا نام | مقصد |
+| File ka Naam | Maqsad |
 |---|---|
-| `index.html` | رجسٹریشن فارم جو صارف کا نام، ای میل اور پاس ورڈ لیتا ہے |
-| `server.js` | Node.js سرور - فارم سے آنے والا ڈیٹا حاصل کرکے ڈیٹا بیس میں محفوظ کرتا ہے اور ڈیٹا بیس خود بخود بناتا ہے |
-| `package.json` | پروجیکٹ کی ضروریات اور انحصار (dependencies) |
-| `README.md` | یہ فائل - پروجیکٹ کی معلومات |
+| `index.html` | Registration form - user ka naam, email aur password leta hai |
+| `login.html` | Login form - registered user email aur password se login karta hai |
+| `landing.html` | Landing page - hero section (uzair.png) aur assignment ki tafseelat |
+| `server.js` | Node.js server - registration, login, session aur database sambhalta hai |
+| `package.json` | Project ki zarooriyaat aur dependencies |
+| `screenshots.md` | Tamam pages ke screenshots aur wazahat |
+| `README.md` | Yeh file - project ki maloomat |
 
 ---
 
-## پاس ورڈ کی شرائط
-پاس ورڈ میں درج ذیل شرائط کا پورا ہونا ضروری ہے:
+## Password ki Sharaayet
 
-- ✅ کم از کم **8 حروف** ہونے چاہییں
-- ✅ کم از کم **1 بڑا حرف** (A-Z) ہونا چاہیے
-- ✅ کم از کم **1 چھوٹا حرف** (a-z) ہونا چاہیے
-- ✅ کم از کم **1 نمبر** (0-9) ہونا چاہیے
-- ✅ کم از کم **1 خاص نشان** (!@#$%^&*) ہونا چاہیے
+Password mein yeh sab hona lazmi hai:
+
+- Kam az kam **8 characters** hon
+- Kam az kam **1 bara harf** (A-Z) ho
+- Kam az kam **1 chhota harf** (a-z) ho
+- Kam az kam **1 number** (0-9) ho
+- Kam az kam **1 khaas nishan** (!@#$%^&*) ho
 
 ---
 
-## استعمال کا طریقہ
+## Istemal ka Tareeqa
 
-### ضروریات
-- **Node.js** انسٹال ہونا چاہیے (https://nodejs.org سے ڈاؤن لوڈ کریں)
-- ویب براؤزر (Chrome، Firefox وغیرہ)
+### Zarooriyaat
+- **Node.js** install hona chahiye (https://nodejs.org se download karein)
+- Web browser (Chrome, Firefox waghaira)
 
-### قدم بہ قدم ہدایات
+### Qadam ba Qadam Hidayaat
 
-1. **ٹرمینل / کمانڈ پرامپٹ کھولیں**
-   - پروجیکٹ فولڈر میں جائیں
+1. **Terminal / Command Prompt kholein**
+   - Project folder mein jayein:
+   ```
+   cd p229021_UzairAhmad_Quiz02
+   ```
 
-2. **ضروری پیکجز انسٹال کریں**
+2. **Zaroori packages install karein**
    ```
    npm install
    ```
 
-3. **سرور شروع کریں**
+3. **Server shuru karein**
    ```
    npm start
    ```
-   - سرور شروع ہونے پر یہ پیغام آئے گا: `Server chal raha hai: http://localhost:3000`
-   - ڈیٹا بیس خود بخود بن جائے گا — کوئی الگ سے بنانے کی ضرورت نہیں
+   - Server shuru hone par yeh paigham aayega: `Server chal raha hai: http://localhost:3000`
+   - Database khud ba khud ban jayega - koi alag se banane ki zaroorat nahi
 
-4. **فارم استعمال کریں**
-   - براؤزر میں یہ ایڈریس کھولیں:
-   ```
-   http://localhost:3000
-   ```
-   - اپنا نام، ای میل اور پاس ورڈ درج کریں
-   - "Register Karein" بٹن دبائیں
+4. **Register karein**
+   - Browser mein kholein: `http://localhost:3000`
+   - Apna naam, email aur password darj karein
+   - "Register Karein" button dabayein
+
+5. **Login karein**
+   - Registration ke baad "Ab Login Karein" par click karein
+   - Ya seedha `http://localhost:3000/login` kholein
+   - Email aur password darj karke login karein
+
+6. **Landing Page dekhein**
+   - Kamyab login ke baad landing page khulega
+   - Hero section mein author ki tasveer aur assignment details dikhein ge
+   - Logout karne ke liye upar "Logout" button dabayein
 
 ---
 
-## ڈیٹا بیس کی تفصیلات
+## Mukammal Flow
 
-- **ڈیٹا بیس:** SQLite (فائل: `quiz02.db`)
-- **ٹیبل کا نام:** `users`
+```
+Register (/) --> Kamyab --> Login (/login) --> Landing Page (/landing) --> Logout --> Login
+```
 
-### ٹیبل کے کالم
-
-| کالم | قسم | تفصیل |
+| Qadam | Safha | Kya Hota Hai |
 |---|---|---|
-| `id` | INTEGER (AUTOINCREMENT) | خودکار نمبر (بنیادی کلید) |
-| `username` | TEXT | صارف کا نام |
-| `email` | TEXT (UNIQUE) | ای میل (منفرد ہونا ضروری ہے) |
-| `password` | TEXT | پاس ورڈ (ہیش شدہ - محفوظ) |
-| `created_at` | DATETIME | رجسٹریشن کی تاریخ اور وقت |
+| 1 | `/` | Naya user register hota hai |
+| 2 | `/login` | Registered user login karta hai |
+| 3 | `/landing` | Hero section aur assignment details dikhti hain |
+| 4 | `/logout` | Session khatam, wapis login page |
 
 ---
 
-## حفاظتی خصوصیات
+## Database ki Tafseelat
 
-- 🔒 پاس ورڈ `PBKDF2 + SHA-512` سے ہیش ہو کر محفوظ ہوتا ہے
-- 🛡️ SQL Injection سے بچاؤ کے لیے Prepared Statements استعمال ہوتے ہیں
-- ✅ Client-side اور Server-side دونوں طرف سے تصدیق ہوتی ہے
-- 📧 ایک ای میل سے صرف ایک بار رجسٹریشن ہو سکتی ہے
+- **Database:** SQLite (file: `quiz02.db`)
+- **Table ka naam:** `users`
+
+### Table ke Columns
+
+| Column | Type | Tafseelat |
+|---|---|---|
+| `id` | INTEGER (AUTOINCREMENT) | Khudkaar number (primary key) |
+| `username` | TEXT | User ka naam |
+| `email` | TEXT (UNIQUE) | Email (munfarid hona zaroori hai) |
+| `password` | TEXT | Password (hash shuda - mehfooz) |
+| `created_at` | DATETIME | Registration ki tareekh aur waqt |
 
 ---
 
-## ٹیکنالوجی
+## Hifazati Khasusiyaat (Security Features)
 
-- **HTML5** - فارم کے لیے
-- **CSS3** - خوبصورت ڈیزائن کے لیے
-- **JavaScript** - کلائنٹ سائیڈ تصدیق کے لیے
-- **Node.js + Express** - سرور سائیڈ پروسیسنگ کے لیے
-- **SQLite** (sql.js) - ڈیٹا بیس کے لیے
+- Password `PBKDF2 + SHA-512` se hash ho kar mehfooz hota hai
+- SQL Injection se bachao ke liye Prepared Statements istemal hote hain
+- Client-side aur Server-side dono taraf se tasdeeq hoti hai
+- Session-based authentication - bina login ke landing page nahi khulta
+- Ek email se sirf ek baar registration ho sakti hai
+- Session 30 minute baad khud ba khud khatam ho jati hai
+
+---
+
+## Technologies
+
+- **HTML5** - Forms aur pages ke liye
+- **CSS3** - Khubsurat design ke liye
+- **JavaScript** - Client-side validation ke liye
+- **Node.js + Express** - Server-side processing ke liye
+- **SQLite** (sql.js) - Database ke liye
+- **express-session** - Login session management ke liye

@@ -1,0 +1,21 @@
+# Node modules - npm install se dubara ban jayega
+node_modules/
+
+# Database file - server chalane par khud ban jati hai
+quiz02.db
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE / Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
